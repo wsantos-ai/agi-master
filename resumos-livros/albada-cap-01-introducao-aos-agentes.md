@@ -10,23 +10,76 @@
 
 ## Abertura com Contexto
 
-Você já sabe que um LLM sozinho gera texto, e já viu em ReAct `[F-018]` que alternar pensamento e ação melhora resolução de tarefas. O que faltava era a pergunta de engenharia: **quando vale a pena construir um agente, e quando isso é over-engineering caro?** Este capítulo responde exatamente isso. Ele é o mapa antes do território — não ensina a construir nada, ensina a decidir o que construir, e dá o vocabulário (*agentic system*, espectro de agência, seleção de modelo) que os capítulos seguintes assumem como dado.
+Você já sabe que um modelo de linguagem (ChatGPT, Claude, etc.) consegue gerar texto. Agora vem a pergunta prática: **quando você realmente precisa construir um "agente" (um programa que usa o modelo de linguagem para resolver problemas)?**
 
-É o capítulo certo para ler agora porque o mestrado está saindo de "como o modelo raciocina" para "como o sistema opera". São problemas diferentes, e confundir os dois é o erro mais comum de quem vem da leitura de papers.
+Porque aqui está o ponto: nem tudo que parece "agente" é realmente um agente. Às vezes é só um programa comum disfarçado. E construir um agente de verdade é caro e complicado.
+
+Este capítulo responde: **Como você sabe se precisa de um agente ou se algo mais simples resolve o seu problema?**
 
 ## Resumo em Uma Frase
 
 Agência é um espectro — não um rótulo — e a decisão de construir um agente deve ser tomada comparando-o honestamente com três alternativas mais baratas (código puro, *workflow* determinístico, RAG), porque agentes só compensam quando as entradas são imprevisíveis e o planejamento precisa se adaptar em tempo de execução.
 
-## Conceitos-Chave
+## Conceitos-Chave (Explicados Simples)
 
-- **Espectro de agência** [confirmado — tese central do autor]: "a capacidade de agir existe em um espectro" `[trad.]`. Muita coisa vendida como agente executa script determinístico. O teste que o autor propõe: o sistema toma decisão de verdade, ou segue trilho fixo? Isso casa exatamente com a regra do repo de tratar "raciocínio" e "planejamento" como reivindicações operacionais, não como descrições.
+### 1. Agência é um Espectro, Não um Rótulo
 
-- **Sistema agêntico (*agentic system*)** [confirmado — definição estipulativa do autor]: não é o agente, é tudo que o sustenta — ferramentas, memória, *foundation model*, orquestração e infraestrutura. Distinção útil: quando um agente falha, na maioria das vezes o que falhou foi o sistema em volta, não o modelo.
+**O que significa?** Não é "agente sim/não". É "quão inteligente a decisão é?"
 
-- **O pivô técnico que criou agentes** [confirmado]: *foundation models* deixaram de apenas produzir saída legível por humanos e passaram a emitir **assinaturas de função estruturadas com seleção de parâmetros**. Um framework de orquestração executa essas funções. Esse é o mecanismo concreto por trás de "o agente usa ferramentas" — sem misticismo.
+**Exemplo 1 (NÃO é agente):** Um programa que envia e-mail automático sempre que alguém preenche um formulário. É determinístico — "se formulário = preenchido, então envie e-mail". Sem decisões reais.
 
-- **Árvore de decisão em quatro degraus** [confirmado — é a contribuição prática mais forte do capítulo]: código puro → *workflow* determinístico → RAG/chatbot → agente autônomo. Quatro fatores decidem: variabilidade das entradas, complexidade do raciocínio, restrições de desempenho/conformidade, custo contínuo de manutenção.
+**Exemplo 2 (É agente):** Um programa que lê e-mail de reclamação, entende se é urgente ou não, responde com a solução apropriada e escala para humano se muito complicado. Aqui há decisões reais.
+
+**Moral:** Muita coisa vendida como "agente" é só o Exemplo 1 com nome chique.
+
+---
+
+### 2. Sistema Agêntico (O Ecossistema)
+
+**O que é?** Um agente não é só o modelo de linguagem. É o agente **MAIS** tudo ao redor dele:
+- Ferramentas que o agente pode usar
+- Memória (histórico de conversas)
+- O modelo de linguagem em si
+- O código que orquestra (coordena) tudo
+
+**Analogia:** Um jogador de futebol é só uma parte do time. Precisa de: técnico, companheiros, uniforme, campo, bola, regras. Tirar qualquer um desses, o time não funciona.
+
+**Moral:** Quando um agente falha, 80% das vezes a culpa não é do modelo. É do sistema em volta.
+
+---
+
+### 3. O que Mudou: Models Passaram a Chamar Funções
+
+**Antes:** Modelo de linguagem recebia pergunta, devolvia texto para humano ler.
+- Entrada: "qual é a capital de França?"
+- Saída: "Paris é a capital da França."
+
+**Agora:** Modelo de linguagem recebe pergunta, devolve **instruções estruturadas** que o programa executa.
+- Entrada: "você quer fazer reserva de voo?"
+- Saída: `chamar_funcao("buscar_voos", origem="São Paulo", destino="Rio")`
+- Programa executa essa função
+
+**Por que mudou?** O modelo aprendeu a "dizer" o que fazer, não só "descrever".
+
+---
+
+### 4. A Escada de Custo (A Contribuição Mais Importante do Capítulo)
+
+Albada oferece uma árvore de decisão: **use a solução mais simples que resolve seu problema.**
+
+**Degrau 1 — Código Puro:** Se o problema é totalmente previsível, escreva um programa normal.
+- Exemplo: programa que divide arquivo CSV em colunas
+
+**Degrau 2 — Workflow Determinístico:** Se o problema tem passos conhecidos mas pode ter variações pequenas, use um "fluxo de trabalho" (regras de negócio).
+- Exemplo: "se fatura for PDF, converta; se for CSV, processe; se erro, envie para humano"
+
+**Degrau 3 — RAG (Recuperação + Geração):** Se você precisa responder perguntas sobre um conjunto de documentos, use recuperação + modelo.
+- Exemplo: "responda perguntas sobre nossa política de RH a partir desses 300 documentos"
+
+**Degrau 4 — Agente:** Só use agente se as entradas forem imprevisíveis E você precisar de planejamento dinâmico.
+- Exemplo: suporte ao cliente que recebe reclamações sobre qualquer coisa possível
+
+**Moral:** Suba de degrau só quando o anterior não funciona.
 
 - **Deslocamento síncrono → assíncrono** [hipótese]: o autor afirma que agentes são projetados para operação assíncrona e que isso "aumenta drasticamente a eficiência" `[trad.]`. É afirmação de design, sem número no capítulo. E é discutível: assincronia é propriedade do orquestrador, não do agente — dá para ter agente síncrono e *workflow* assíncrono.
 
@@ -36,17 +89,88 @@ Agência é um espectro — não um rótulo — e a decisão de construir um age
 
 - **"Um padrão por grupo grande"** [hipótese — heurística organizacional do autor]: deixe as equipes experimentarem livre no começo; padronize por departamento quando o padrão vencedor aparecer. Padronizar cedo demais mata criatividade; nunca padronizar gera projetos duplicados.
 
-## Explicação Didática
+## Explicação Didática Simplificada
 
-**Primeiro, o que mudou tecnicamente.** Durante anos, um modelo de linguagem era um escritor: você pedia, ele devolvia texto para um humano ler. O destravamento foi ensinar o modelo a devolver **um formulário preenchido** em vez de prosa — o nome da função, os parâmetros, os tipos. Quem executa o formulário é o orquestrador, código comum que você escreve. Analogia: antes o modelo escrevia a receita e você ia para o fogão; agora ele preenche a comanda e a cozinha executa. *Aqui a analogia trinca:* a cozinha de verdade recusa comanda impossível; um orquestrador sem validação executa alegremente uma chamada com parâmetro inventado. Por isso validação não é detalhe — é o que separa a analogia da realidade.
+### A Mudança Técnica: O Modelo Passou a Usar Ferramentas
 
-**Segundo, e mais importante, quando não construir um agente.** Este é o miolo do capítulo e onde ele se descola dos papers. O autor monta uma escada de custo crescente. No degrau mais baixo, código puro: se as entradas são totalmente previsíveis e as saídas possíveis cabem numa lista, uma *regex* resolve mais rápido, mais barato e é muito mais fácil de testar do que qualquer *pipeline* de ML. Ele dá o caso do log em formato fixo `AAAA-MM-DD HH:MM:SS—mensagem`. Some a isso duas condições que **eliminam o modelo de linguagem por decreto**: latência na casa de milissegundos (sistema embarcado reagindo a sensor — não há tempo para chamada de API) e domínio regulado (dispositivo médico, aeronáutica, certos sistemas financeiros), onde a lógica precisa ser determinística e auditável e rede neural caixa-preta não passa na certificação.
+**Antes:** Você pergunta "Qual é o voo mais barato para Rio?". Modelo responde: "O voo mais barato é R$ 200 com a companhia X às 8h."
 
-No degrau seguinte, *workflow* determinístico: a lógica cabe num conjunto finito de ramificações e você sabe de antemão onde precisa de humano no meio. O exemplo é fatura chegando em três formatos conhecidos (CSV, JSON, PDF) — roteie cada um para seu *parser*, verifique inconsistência, pare para revisão humana se a reconciliação falhar. Airflow ou AWS Step Functions dão controle mais claro sobre caminhos de erro do que um LLM. Repare no argumento: não é que o LLM não conseguiria; é que você perde auditabilidade e ganha custo.
+**Agora:** Você pergunta a mesma coisa. Modelo responde: "Chame a função buscar_voos(origem='São Paulo', destino='Rio')." O programa executa essa função, recebe os voos de verdade, e volta com a resposta real.
 
-Só no topo, agentes — e o critério é preciso: **entradas não estruturadas, inéditas ou muito variáveis, mais necessidade de planejamento dinâmico em várias etapas ou de melhoria contínua por feedback.** O exemplo que ilumina: uma central de atendimento que recebe desde "a bateria do meu laptop está estufada e pode explodir" até "estou sendo cobrado por serviços que não solicitei". Nenhuma árvore de regras cobre essa variedade, e uma FAQ com RAG desaba. O agente interpreta intenção, extrai entidades, consulta base de conhecimento, redige resposta e escala para humano se precisar — sem que você tenha enumerado as ramificações antes.
+**Por que é importante?** O modelo aprendeu que não é só gerador de texto — é **coordenador**. Ele sabe quando precisa chamar uma ferramenta externa.
 
-**Terceiro, o custo.** O autor é honesto: agentes são "poderosos, mas exigem muito — tanto em termos de computação em nuvem quanto de esforço de engenharia para monitorar, ajustar e governar" `[trad.]`. A moeda de troca do capítulo inteiro está aí. Você compra adaptabilidade a entradas imprevisíveis; paga em computação, em não-determinismo e em esforço permanente de observabilidade. Se você não precisa da primeira, está só pagando.
+**Aviso:** Isso é simplificado. A verdade tem mais detalhes técnicos. Mas a intuição "o modelo coordena ferramentas" está correta.
+
+---
+
+### Quando Usar Cada Solução
+
+#### Degrau 1: Código Puro (Mais Barato)
+
+**Use quando:** Problema é 100% previsível.
+
+**Exemplos:**
+- Arquivo com formato fixo AAAA-MM-DD HH:MM:SS (sempre igual)
+- Lê um número, multiplica por 2, devolve resultado
+- Divide arquivo grande em pedaços
+
+**Por que?** É rápido, barato, fácil de testar, confiável.
+
+**Quando NÃO usar?** Se as entradas variam muito, código puro fica muito complicado (muitos if/else).
+
+---
+
+#### Degrau 2: Workflow Determinístico (Médio)
+
+**Use quando:** Você conhece as regras, mas há variações pequenas.
+
+**Exemplos:**
+- "Se documento é PDF, processe assim. Se é CSV, processe assado. Se erro, mande para humano."
+- "Se cliente é VIP, responda em 5 min. Se normal, responda em 2h."
+
+**Por que?** Controla o fluxo (quem faz o quê), fácil de auditar (importante para lei/regulação).
+
+**Quando NÃO usar?** Se não consegue listar todas as regras, ou se número de combinações explode.
+
+---
+
+#### Degrau 3: RAG — Recuperação + Resposta (Moderado)
+
+**Use quando:** Você tem documentos e quer responder perguntas sobre eles.
+
+**Exemplos:**
+- "Responda dúvidas de funcionários sobre nossa política de RH" (lê 300 documentos internos)
+- "Responda sobre características do produto" (lê manual de 50 páginas)
+
+**Por que?** Encontra informação relevante e formata resposta. Não requer "decisão criativa" — só busca + formatação.
+
+**Quando NÃO usar?** Se precisa fazer ações (marcar reunião, aprovar despesa), ou se respostas dependem de múltiplos passos ligados.
+
+---
+
+#### Degrau 4: Agente (Mais Caro)
+
+**Use quando:** Entradas são imprevisíveis + você precisa de planejamento dinâmico.
+
+**Exemplos:**
+- Suporte ao cliente (recebe reclamação sobre *qualquer coisa*)
+- Planejador de viagem (cada cliente tem necessidades diferentes)
+- Assistente de pesquisa (cada pesquisa é única)
+
+**Por que?** Consegue entender contexto, tomar decisões, replanejar conforme aprende.
+
+**Quando NÃO usar?** Se problema é simples. Agentes são caros (processamento + energia + engenharia).
+
+---
+
+### A Moeda de Troca (O Preço que Você Paga)
+
+**Agentes são poderosos, mas caros:**
+- **Computação:** Modelos grandes precisam de GPU caras
+- **Não-determinismo:** Você não sabe 100% o que o agente vai fazer
+- **Engenharia:** Precisa monitorar, ajustar, consertar bugs
+
+**Se você não precisa de adaptabilidade, você está só pagando o preço.**
 
 ## Exemplos Práticos
 
@@ -60,30 +184,60 @@ Só no topo, agentes — e o critério é preciso: **entradas não estruturadas,
 
 **Contraexemplo 3 (autoral — teste Feynman): folha de pagamento.** Entradas variam bastante (horas extras, faltas, adicional noturno, dependentes, sindicato), o que tenta você a chamar de "variável". Mas a variabilidade é **estruturada e finita**, e o resultado precisa ser exatamente reproduzível e auditável perante a lei. Logo: *workflow* determinístico, não agente. Lição: variabilidade de entrada, sozinha, não justifica agente — ela precisa vir acompanhada de imprevisibilidade *semântica*.
 
-## Exercícios com Verificação
+## Exercícios Simples
 
-**Exercício 1 — Classificação.** Um time diz ter construído "um agente de onboarding". O sistema recebe o cadastro, checa CPF numa API, envia e-mail de boas-vindas e cria a conta. Sempre nessa ordem. É agente?
+**Exercício 1 — Verdadeiro ou Falso?**
+
+"Um programa que recebe cadastro, checa CPF, envia e-mail e cria conta (sempre nessa ordem) é um agente."
 
 <details>
-<summary>Gabarito comentado</summary>
+<summary>Resposta</summary>
 
-**Não** — pelo teste do próprio autor, é um *workflow* determinístico com rótulo de marketing. O critério é "tomada de decisão significativa e comportamento adaptativo"; aqui a sequência é fixa e conhecida de antemão.
+**FALSO.** Isso é um *workflow* determinístico. Não há decisões reais — tudo segue a mesma ordem sempre. Um agente tomaria decisões diferentes conforme o contexto (por exemplo: "se CPF inválido, pergunte novamente; se válido, prossiga").
 
-Por que isso importa e não é implicância: se você chamar isso de agente, vai importar o custo do agente (observabilidade, avaliação de trajetória, tratamento de não-determinismo) para um sistema que não precisa de nada disso. O rótulo errado gera arquitetura errada.
-
-Quando viraria agente: se o sistema precisasse decidir *quais* verificações fazer conforme o perfil do cadastro, e replanejar quando uma delas falhasse de forma inesperada.
+**Moral:** Muita coisa vendida como "agente" é só um programa com nome chique.
 </details>
 
-**Exercício 2 — Escolha de arquitetura.** Seu cliente quer um sistema que responda dúvidas dos funcionários sobre a política interna de RH. São 300 páginas de PDF, atualizadas trimestralmente. Código puro, *workflow*, RAG ou agente?
+---
+
+**Exercício 2 — Qual solução?**
+
+Seu cliente quer um sistema que responda perguntas de funcionários sobre política de RH (300 páginas de documentos internos). Qual você escolhe?
+
+- (a) Código puro
+- (b) Workflow determinístico
+- (c) RAG
+- (d) Agente
 
 <details>
-<summary>Gabarito comentado</summary>
+<summary>Resposta</summary>
 
-**RAG.** A tarefa é essencialmente "responder perguntas sobre conteúdo documental", sem necessidade de chamar APIs externas nem de orquestrar decisões. O autor é explícito sobre esse degrau: custo de manutenção menor que o de agente, sua despesa principal é manter os documentos indexados atualizados e refinar os *prompts*.
+**(c) RAG.**
 
-O que você sacrifica ao escolher RAG: planejamento multietapas e aprendizado por ciclos de feedback. Você não precisa de nenhum dos dois aqui.
+**Por quê?** 
+- Problema é "responder perguntas sobre documentos conhecidos"
+- Documentos não mudam (só atualizam a cada 3 meses)
+- Não precisa de "decisões criativas" — só busca + resposta
+- Agente seria overkill (caro demais para o problema)
 
-Erro comum: escolher agente porque "as perguntas são variadas". Perguntas variadas sobre um corpus fixo é o caso canônico de RAG, não de agente. A variabilidade que exige agente é a de *ações necessárias*, não a de formulações da pergunta.
+**Erro comum:** "Mas as perguntas são variadas!" Sim, as *perguntas* são variadas. Mas o *conjunto de documentos* é fixo. RAG lida bem com isso.
+</details>
+
+---
+
+**Exercício 3 — Qual NÃO é agente?**
+
+- (a) Programa que toma decisões diferentes conforme o contexto
+- (b) Programa que segue a mesma sequência de passos sempre
+- (c) Programa que chama ferramentas externos quando precisa
+- (d) Programa que aprende com feedback
+
+<details>
+<summary>Resposta</summary>
+
+**(b) Programa que segue a mesma sequência sempre.**
+
+Um agente de verdade toma decisões diferentes conforme o contexto. Se tudo é sequencial e fixo, é um workflow (ou código puro), não um agente.
 </details>
 
 **Exercício 3 — Crítica de afirmação.** O capítulo diz que agentes "são projetados para operação assíncrona" e que isso "aumenta drasticamente a eficiência". Critique essa afirmação nos termos do repo.

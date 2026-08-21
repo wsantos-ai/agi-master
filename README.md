@@ -1,4 +1,4 @@
-# 🚀 Mestrado em AGI & Raciocínio em Agentes + Ferramentas
+# 🚀 AGI & Raciocínio em Agentes + Ferramentas
 
 **Diário de Estudos Estruturado:** Entendimento verificável sobre como LLMs integrados com ferramentas conseguem raciocínio complexo e caminham em direção a AGI.
 
@@ -6,7 +6,7 @@
 
 ## 🎯 Comece Aqui
 
-1. **[CLAUDE.md](CLAUDE.md)** — Instruções mestrado, persona, princípios (leia primeiro!)
+1. **[CLAUDE.md](CLAUDE.md)** — Instruções estudo, persona, princípios (leia primeiro!)
 2. **[ESTRUTURA-DO-PROJETO.md](ESTRUTURA-DO-PROJETO.md)** — Organização de arquivos e fluxo de trabalho
 3. **[FONTES.md](FONTES.md)** — Índice de papers, livros, documentação (58 fontes catalogadas)
 4. **[MAPA-DA-IGNORANCIA.md](MAPA-DA-IGNORANCIA.md)** — Perguntas abertas que dirigem o estudo
@@ -250,7 +250,7 @@ Estude para responder. Lacunas dirigem pesquisa.
 
 ---
 
-## 🎓 Espírito do Mestrado
+## 🎓 Espírito do Estudo
 
 Não é "usar LLMs". É entender:
 - **Como** eles raciocinam
@@ -276,4 +276,4 @@ Comece em: [CLAUDE.md](CLAUDE.md)
 
 *Repositório em construção (Fase 1: Fundamentos)*  
 *Última atualização: 2026-08-20*  
-*Responsável: mestrado-agi-agentes*
+*Responsável: Wellington Santos*
