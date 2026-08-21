@@ -66,6 +66,7 @@ Tabela de todas as notas de estudo criadas, com fase, status, pré-requisitos e 
 | Conhecimento Estruturado vs. Implícito | [conhecimento-estruturado.md](notas/conhecimento-estruturado.md) | planejado | [F-026], pesquisa | RAG | Hybrid Reasoning | — | — |
 | Segurança de Agentes | [seguranca-agentes.md](notas/seguranca-agentes.md) | planejado | [F-032], [F-033], [F-034] | Tool Calling | Control de Agentes | Proj 3-4 | — |
 | Interpretabilidade em Agentes | [interpretabilidade-agentes.md](notas/interpretabilidade-agentes.md) | planejado | [F-050], [F-051] | Mecanismos de Agentes | Debugging de Agentes | — | — |
+| Escala Bruta vs. Teoria Nova | [escala-bruta-vs-teoria-nova.md](notas/escala-bruta-vs-teoria-nova.md) | aberta | [F-001], [F-053] | Deep Learning, Scaling Laws | Arquitetura Futura | Proj 4 | 2026-08-20 |
 | AGI: Perspectivas e Limites | [agi-perspectivas.md](notas/agi-perspectivas.md) | planejado | [F-052] | Todas as fases | Pesquisa Futura | Proj 4 | — |
 
 ---
@@ -81,10 +82,11 @@ Tabela de todas as notas de estudo criadas, com fase, status, pré-requisitos e 
 
 ## Estatísticas
 
-- **Total de notas planejadas:** 67
-- **Notas criadas:** 1 (5 Princípios para Agentes Eficazes)
+- **Total de notas planejadas:** 68 (adicionada 1 pergunta aberta)
+- **Notas criadas:** 2 (5 Princípios para Agentes Eficazes + Escala Bruta vs. Teoria Nova)
 - **Notas revisadas:** 1 (pronto, com errata e exercícios)
-- **Cobertura por fase:** Fase 1 (0%), Fase 2 (0%), Fase 3 (1/8 = 12,5%), Fase 4 (0%)
+- **Perguntas abertas:** 1 (Escala Bruta vs. Teoria Nova)
+- **Cobertura por fase:** Fase 1 (0%), Fase 2 (0%), Fase 3 (1/8 = 12,5%), Fase 4 (1/8 = 12,5%)
 
 *(Última atualização: 2026-08-20)*
 

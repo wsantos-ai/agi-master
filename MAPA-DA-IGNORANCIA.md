@@ -350,6 +350,36 @@ Observabilidade é o critério que separa "agente que funciona" de "agente que f
 
 **Status:** Aberta desde 2026-08-20 / [B-018] Cap. 1
 
+### **Arquitetura e Limite de Escala**
+
+#### 22. Escala Bruta vs. Teoria Nova — Qual é o Limite?
+
+**Enunciado preciso:**  
+Estamos no caminho de força bruta: mais dados (raspando a internet), mais parâmetros (10^12 → 10^13 → 10^18?), mais computação (datacenters gigantes). A pergunta: **Há um limite físico/teórico onde escala bruta para de funcionar, exigindo arquitetura fundamentalmente nova?**
+
+**Por que importa:**  
+Define se o futuro de AGI é "escale o que temos" (engenharia) ou "descubra novo paradigma" (pesquisa teórica). A resposta decide como arquitetar agentes em 2026-2028.
+
+**Sinais de limite:**
+- Retorno diminuindo: +10% dados em 2020 = +3% perf; em 2024 = +0,5% perf (hipótese, não confirmado)
+- Dados murchando: internet já foi raspada quase inteira
+- Custo proibitivo: próximo passo é datacenter maior que cidade
+
+**Sinais de "ainda não escalamos":**
+- Cada nova escala de tamanho (GPT-3 → GPT-4 → o1) trouxe ganhos reais
+- Problemas que eram "impossível" em 2020 (programação, raciocínio) estão resolvidos em 2024
+- Talvez seja só "orçamento de computação ainda insuficiente"
+
+**O que já tentou:**
+- Leitura de [F-001] Cap. 1, que menciona que "combustível" (dados + hardware) foi o que mudou, não o "motor" (algoritmo)
+- Observação empírica de benchmarks (scaling laws papers)
+
+**Nível:** `fundamento` → `fronteira` 
+
+**Status:** Aberta desde 2026-08-20 / Pergunta emergente da leitura de Cap. 1
+
+**Hipótese pessoal (não confirmada):** Escala bruta bate muro 2026-2028. O que segue é híbrido: modelo especializado (pequeno/eficiente) + busca explícita + raciocínio + memória estruturada. Não é "teoria matemática nova", é "ferramentas antigas usadas de forma mais eficiente".
+
 ---
 
 ## Meta-observação: Perguntas sobre o Próprio Método
