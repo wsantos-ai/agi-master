@@ -68,6 +68,10 @@ Tabela de todas as notas de estudo criadas, com fase, status, pré-requisitos e 
 | Interpretabilidade em Agentes | [interpretabilidade-agentes.md](notas/interpretabilidade-agentes.md) | planejado | [F-050], [F-051] | Mecanismos de Agentes | Debugging de Agentes | — | — |
 | Escala Bruta vs. Teoria Nova | [escala-bruta-vs-teoria-nova.md](notas/escala-bruta-vs-teoria-nova.md) | aberta | [F-001], [F-053] | Deep Learning, Scaling Laws | Arquitetura Futura | Proj 4 | 2026-08-20 |
 | AGI: Perspectivas e Limites | [agi-perspectivas.md](notas/agi-perspectivas.md) | planejado | [F-052] | Todas as fases | Pesquisa Futura | Proj 4 | — |
+| Teste de Turing | [teste-de-turing.md](notas/teste-de-turing.md) | planejado | [F-059] | — | Quarto Chinês | — | — |
+| Argumento do Quarto Chinês | [quarto-chines.md](notas/quarto-chines.md) | planejado | [F-060] | Teste de Turing | Naturalismo Biológico | — | — |
+| Naturalismo Biológico vs. Computacionalismo | [naturalismo-biologico.md](notas/naturalismo-biologico.md) | planejado | [F-060] | Quarto Chinês | Problema Difícil da Consciência | — | — |
+| Problema Difícil da Consciência | [problema-dificil-consciencia.md](notas/problema-dificil-consciencia.md) | planejado | [F-061] | Naturalismo Biológico | AGI: Perspectivas e Limites | Proj 4 | — |
 
 ---
 
@@ -82,7 +86,7 @@ Tabela de todas as notas de estudo criadas, com fase, status, pré-requisitos e 
 
 ## Estatísticas
 
-- **Total de notas planejadas:** 68 (adicionada 1 pergunta aberta)
+- **Total de notas planejadas:** 72 (adicionadas 4 notas de filosofia da mente, 2026-08-28)
 - **Notas criadas:** 2 (5 Princípios para Agentes Eficazes + Escala Bruta vs. Teoria Nova)
 - **Notas revisadas:** 1 (pronto, com errata e exercícios)
 - **Perguntas abertas:** 1 (Escala Bruta vs. Teoria Nova)

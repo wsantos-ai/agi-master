@@ -244,6 +244,24 @@ Define roadmap de pesquisa. Se é suave, é otimização; se é qualitativa, há
 
 ---
 
+#### 14. Simulação correta é compreensão, ou só comportamento indistinguível?
+
+**Enunciado preciso:**
+Searle [F-060] separa sintaxe (manipulação de símbolos) de semântica (compreensão real) e argumenta que um sistema pode passar em qualquer teste comportamental — inclusive o Teste de Turing [F-059] — sem entender nada, só seguindo regras. Quando aplicamos isso a um LLM com *tool calling*: existe alguma medida, além de comportamento observável, que distinga "o agente decidiu chamar a ferramenta certa porque entendeu o problema" de "o agente produziu o token de *function call* certo porque o padrão de treino favorece essa saída neste contexto"? Se não existe — e a suspeita é que não existe nenhuma sob a definição de Searle —, então toda avaliação de agente (inclusive as deste mestrado) está limitada a medir comportamento, nunca compreensão.
+
+**Por que importa:**
+Este repositório usa os termos "raciocínio", "planejamento", "compreensão" para descrever comportamento de agentes (regra do CLAUDE.md: são reivindicações operacionais, não descritivas). O argumento do Quarto Chinês é a base filosófica dessa regra — torná-la explícita evita que notas futuras escorreguem de volta para tratar esses termos como fatos sobre o que o modelo "realmente" faz. Conecta diretamente à pergunta 13 (Quando AGI?): se transição suave vs. qualitativa é indecidível por teste comportamental (posição de Searle), a pergunta 13 pode ser filosoficamente insolúvel, não apenas tecnicamente difícil — ver McGinn sobre o "problema difícil" [F-061] ser possivelmente insolúvel por qualquer método de terceira pessoa.
+
+**O que já se tentou:**
+- Leitura da transcrição de [F-062], vídeo popular expondo Quarto Chinês, Teste de Turing, naturalismo biológico de Searle, e problema difícil de Chalmers (2026-08-28) — fonte terciária, não conta como leitura primária
+- [F-059], [F-060], [F-061] catalogados mas ainda **não lidos** na íntegra (estado "na fila")
+
+**Nível:** `fundamento` — bloqueia qualquer afirmação forte sobre "o agente entende X"
+
+**Status:** Aberta desde 2026-08-28 / [F-059], [F-060], [F-061], [F-062] / conecta pergunta 13
+
+---
+
 ## Perguntas Respondidas (Arquivo)
 
 *(Esta seção será preenchida conforme perguntas forem respondidas. Formato: pergunta # | resposta resumida | [F-xx] | data)*

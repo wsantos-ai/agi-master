@@ -532,6 +532,44 @@ Organização: por **eixo temático**, não por descoberta. Dentro de cada eixo,
 
 ---
 
+## 17. FILOSOFIA DA MENTE e CONSCIÊNCIA EM IA
+
+*Eixo novo (2026-08-28), aberto a partir da transcrição de [F-062], um vídeo popular sobre o argumento do Quarto Chinês. O vídeo é fonte terciária (exposição, não pesquisa original) — catalogado abaixo, mas sem substituir a leitura dos papers primários que resume: [F-059], [F-060], [F-061], verificados por busca antes de entrar aqui, conforme regra do repositório (nunca inventar DOI/data).*
+
+### [F-059] — Computing Machinery and Intelligence
+- **Autores:** Alan M. Turing
+- **Data:** 1950-10 (Mind, vol. LIX, n. 236, pp. 433–460)
+- **Tipo:** Paper
+- **URL:** https://doi.org/10.1093/mind/LIX.236.433
+- **Estado:** na fila
+- **Resolve:** Origem do "Imitation Game" (Teste de Turing). Propõe substituir "máquinas pensam?" — pergunta que Turing considera mal definida — por um critério comportamental observável: indistinguibilidade em conversa. Base de todo debate behaviorista em IA e do eixo forte-IA vs. fraca-IA que aparece em [F-060]. Relevante para a pergunta 13 do Mapa (Quando AGI?) porque é o primeiro critério operacional proposto para "inteligência de máquina".
+
+### [F-060] — Minds, Brains, and Programs
+- **Autores:** John R. Searle
+- **Data:** 1980 (Behavioral and Brain Sciences, 3(3), pp. 417–457)
+- **Tipo:** Paper
+- **URL:** https://doi.org/10.1017/S0140525X00005756
+- **Estado:** na fila
+- **Resolve:** Introduz o argumento do Quarto Chinês contra a "hipótese da IA forte" (a simulação correta *é* uma mente). Distingue sintaxe (manipulação de símbolos, o que o computador faz) de semântica (compreensão, *intentionality*, o que falta). Propõe naturalismo biológico como alternativa: consciência exige a maquinaria causal específica de cérebros, não apenas o programa certo. Fundamento direto para a regra deste repositório de tratar "compreensão"/"raciocínio" em agentes como reivindicação operacional, não descritiva.
+
+### [F-061] — Facing Up to the Problem of Consciousness
+- **Autores:** David J. Chalmers
+- **Data:** 1995 (Journal of Consciousness Studies, 2(3), pp. 200–219)
+- **Tipo:** Paper
+- **URL:** https://consc.net/papers/facing.pdf
+- **Estado:** na fila
+- **Resolve:** Distingue "problemas fáceis" da consciência (explicáveis por mecanismo funcional/computacional — atenção, integração de informação, relato verbal) do "problema difícil" (por que há experiência subjetiva associada a esses processos). Relevante para separar duas perguntas que a literatura de agentes costuma confundir: "o agente processa informação de forma sofisticada?" (fácil, mensurável) vs. "há algo que é ser esse agente?" (difícil, sem método de teste conhecido).
+
+### [F-062] — The Chinese Room Argument: Can Machine Fool Us?
+- **Autores:** Canal AH DOCUMENTARY (YouTube)
+- **Data:** 2024-07-27 (consultado em 2026-08-28)
+- **Tipo:** Vídeo (YouTube)
+- **URL:** https://youtu.be/maVqmEMpt64
+- **Estado:** lida (transcrição completa lida em 2026-08-28)
+- **Resolve:** Exposição popular que percorre Quarto Chinês [F-060], Teste de Turing [F-059], debate IA-forte vs. naturalismo biológico, e problema difícil da consciência [F-061] (via Chalmers e Colin McGinn). Fonte terciária — útil como mapa do território e gatilho para abrir o eixo 17, mas não substitui leitura dos papers primários (todos ainda "na fila"). **Errata detectada:** o vídeo atribui a Herbert Simon uma declaração de 1955 de que "existiam máquinas que pensam, aprendem e criam"; a citação verificada é de **1957** — o trabalho de Simon, Newell e Shaw (Logic Theorist) é de 1955-56, mas a frase célebre foi dita dois anos depois. Ver pergunta 14 do Mapa da Ignorância.
+
+---
+
 ## Sumário por Etapa de Estudo
 
 ### 📖 Fase 1 — Fundamentos (semanas 1-4)
